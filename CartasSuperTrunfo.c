@@ -9,6 +9,8 @@ struct Carta {
     float area;                   // Área em km²
     float pib;                    // PIB em bilhões de reais
     int pontosTuristicos;        // Número de pontos turísticos
+    float densidadePopulacional;  // Habitantes por km²
+    float pibPerCapita;           // PIB por pessoa (em reais)
 };
 
 int main() {
@@ -16,7 +18,7 @@ int main() {
     struct Carta carta1;
     struct Carta carta2;
 
-    // Instruções para o usuário
+    // Instruções para o usuário - Carta 1
     printf("=== Cadastro da Carta 1 ===\n");
     printf("Digite a letra do estado (A-H): ");
     scanf(" %c", &carta1.estado);
@@ -39,6 +41,11 @@ int main() {
     printf("Digite o número de pontos turísticos: ");
     scanf("%d", &carta1.pontosTuristicos);
 
+    // Cálculos para carta 1
+    carta1.densidadePopulacional = carta1.populacao / carta1.area;
+    carta1.pibPerCapita = (carta1.pib * 1000000000) / carta1.populacao;
+
+    // Instruções para o usuário - Carta 2
     printf("\n=== Cadastro da Carta 2 ===\n");
     printf("Digite a letra do estado (A-H): ");
     scanf(" %c", &carta2.estado);
@@ -61,8 +68,12 @@ int main() {
     printf("Digite o número de pontos turísticos: ");
     scanf("%d", &carta2.pontosTuristicos);
 
+    // Cálculos para carta 2
+    carta2.densidadePopulacional = carta2.populacao / carta2.area;
+    carta2.pibPerCapita = (carta2.pib * 1000000000) / carta2.populacao;
+
     // Exibição dos dados da primeira carta
-     printf(
+    printf(
         "\n=== Carta 1 ===\n"
         "Estado: %c\n"
         "Código: %s\n"
@@ -70,15 +81,20 @@ int main() {
         "População: %d\n"
         "Área: %.2f km²\n"
         "PIB: %.2f bilhões de reais\n"
-        "Número de Pontos Turísticos: %d\n", 
+        "Número de Pontos Turísticos: %d\n"
+        "Densidade Populacional: %.2f hab/km²\n"
+        "PIB per Capita: %.2f reais\n",
         carta1.estado,
         carta1.codigo,
         carta1.nomeCidade,
         carta1.populacao,
         carta1.area,
         carta1.pib,
-        carta1.pontosTuristicos
-     );
+        carta1.pontosTuristicos,
+        carta1.densidadePopulacional,
+        carta1.pibPerCapita
+    );
+
     // Exibição dos dados da segunda carta
     printf(
         "\n=== Carta 2 ===\n"
@@ -88,14 +104,19 @@ int main() {
         "População: %d\n"
         "Área: %.2f km²\n"
         "PIB: %.2f bilhões de reais\n"
-        "Número de Pontos Turísticos: %d\n", 
+        "Número de Pontos Turísticos: %d\n"
+        "Densidade Populacional: %.2f hab/km²\n"
+        "PIB per Capita: %.2f reais\n",
         carta2.estado,
         carta2.codigo,
         carta2.nomeCidade,
         carta2.populacao,
         carta2.area,
         carta2.pib,
-        carta2.pontosTuristicos
-     );
+        carta2.pontosTuristicos,
+        carta2.densidadePopulacional,
+        carta2.pibPerCapita
+    );
 
+    return 0;
 }
